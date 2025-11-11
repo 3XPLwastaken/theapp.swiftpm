@@ -7,10 +7,11 @@
 
 import SwiftUI
 
-struct GameView: View {
+struct StatisticsView: View {
     let width = UIScreen.main.bounds.width
     let height = UIScreen.main.bounds.height
     
+    @StateObject var data : Data
     @State var showingScreen : Bool = false
     
     var body: some View {
@@ -24,42 +25,32 @@ struct GameView: View {
                 rotatingEnabled: false
             )
             
-            TheButton(
-                x: (width/2.0),
-                y: height - height/5 - height/15,
-                width: width - 25.0,
-                height: height/17,
-                text: "all stats",
-                rotatingEnabled: false
-            )
+            Text("Hard-Set Statistics")
+                .font(.custom("Arial", size: 30.0))
+                .bold()
+                .position(
+                    x: width/2,
+                    y: height/30
+                )
+                .monospaced()
             
-            
-            TheButton(
-                x: (width/2.0),
-                y: height - height/5 - height/15 - height/15,
-                width: width - 25.0,
-                height: height/17,
-                text: "split",
-                color: .yellow.mix(with: .orange, by: 0.7),
-            )
-            
-            TheButton(
-                x: (width/4.0) + 3.0,
-                y: height - height/5 - (height/15 * 3.5),
-                width: width/2.0 - 17.0,
-                height: height/17*2.0,
-                text: "HIT",
-                color: .green
-            )
-            
-            TheButton(
-                x: width - (width/4.0) - 4.0,
-                y: height - height/5 - (height/15 * 3.5),
-                width: width/2.0 - 17.0,
-                height: height/17*2.0,
-                text: "STAND",
-                color: .red
-            )
+            List {
+                ForEach(data.gamesList, id: \.hashValue) { str in
+                    HStack {
+                        Text(str.split(separator: ";")[0])
+                            .bold()
+                        Spacer()
+                        Text(str.split(separator: ";")[1])
+                            .bold()
+                        Spacer()
+                        Text(str.split(separator: ";")[2])
+                            .bold()
+                    }
+                }.onDelete(perform: { offset in
+                    data.gamesList.remove(atOffsets: offset)
+                })
+                .frame(maxWidth: .infinity, alignment: .center)
+            }
             
             /*TheButton(
                 x: (width/3.0) - 25.0,
@@ -69,10 +60,9 @@ struct GameView: View {
                 text: "help",
             )*/
         }
-        
     }
 }
 
 #Preview {
-    StatisticsView()
+    StatisticsView(data: .init())
 }

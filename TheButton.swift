@@ -31,10 +31,14 @@ struct TheButton: View {
     @State var oldzIndex = -1.0
     @State var debounce = false
     
-    var color = Color.blue
+    var fontSize = 25.0
+    @State var color = Color.blue
     var borderColor = Color.blue.opacity(0.2)
     
     @State var isAnimationPlaying = false
+    var rotatingEnabled = true
+    
+    var action : () -> Void = {}
     
     //TODO: make it tilt where the mouse is (if i move my mouse up, it rotates up)
     
@@ -50,8 +54,9 @@ struct TheButton: View {
         //
             //.rotation3DEffect(isAnimationPlaying ? tapAngle : Angle.zero
            //                   , axis: (x: 10, y: 180, z: 30))
-            .rotationEffect(isAnimationPlaying ? tapAngle : Angle.zero)
+            .rotationEffect((isAnimationPlaying && rotatingEnabled) ? tapAngle : Angle.zero)
             .scaleEffect(isAnimationPlaying ? 1.2 : 1.0)
+            //.rotation3DEffect(.degrees(30), axis: (x: 0.0, y: 0, z: 0))
             .position(
                 x: x,
                 y: y
@@ -60,12 +65,12 @@ struct TheButton: View {
             .overlay {
                 Text(text)
                     .font(
-                        .custom("Arial", size: 25.0)
+                        .custom("Arial", size: fontSize)
                     )
                     .scaleEffect(isAnimationPlaying ? 1.2 : 1.0)
                     //.rotation3DEffect(isAnimationPlaying ? tapAngle : Angle.zero
                     //                 , axis: (x: 10, y: 180, z: 30))
-                    .rotationEffect(isAnimationPlaying ? tapAngle : Angle.zero)
+                    .rotationEffect((isAnimationPlaying && rotatingEnabled) ? tapAngle : Angle.zero)
                     .frame(width: width, height: height)
                     .foregroundStyle(.white)
                     .background(color.opacity(0.0))
@@ -77,7 +82,7 @@ struct TheButton: View {
                         width: width,
                         height: height
                     )
-                    .rotationEffect(isAnimationPlaying ? tapAngle : Angle.zero)
+                    .rotationEffect((isAnimationPlaying && rotatingEnabled) ? tapAngle : Angle.zero)
                     .scaleEffect(isAnimationPlaying ? 1.2 : 1.0)
                     .position(x: x, y: y)
                     
@@ -87,8 +92,9 @@ struct TheButton: View {
             
             .gesture(
                     DragGesture(minimumDistance: 0)
-                        .onChanged { _ in
+                        .onChanged { change in
                             // on touch
+                            //change.location
                             
                             if !debounce {
                                 oldzIndex = zIndex
@@ -119,6 +125,9 @@ struct TheButton: View {
                                 isAnimationPlaying = false
                                 global.isActive = false
                             }
+                            
+                            // run the code we pass fr
+                            action()
                         }
                 )
         

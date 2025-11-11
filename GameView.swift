@@ -24,42 +24,14 @@ struct GameView: View {
                 rotatingEnabled: false
             )
             
-            TheButton(
-                x: (width/2.0),
-                y: height - height/5 - height/15,
-                width: width - 25.0,
-                height: height/17,
-                text: "all stats",
-                rotatingEnabled: false
-            )
-            
-            
-            TheButton(
-                x: (width/2.0),
-                y: height - height/5 - height/15 - height/15,
-                width: width - 25.0,
-                height: height/17,
-                text: "split",
-                color: .yellow.mix(with: .orange, by: 0.7),
-            )
-            
-            TheButton(
-                x: (width/4.0) + 3.0,
-                y: height - height/5 - (height/15 * 3.5),
-                width: width/2.0 - 17.0,
-                height: height/17*2.0,
-                text: "HIT",
-                color: .green
-            )
-            
-            TheButton(
-                x: width - (width/4.0) - 4.0,
-                y: height - height/5 - (height/15 * 3.5),
-                width: width/2.0 - 17.0,
-                height: height/17*2.0,
-                text: "STAND",
-                color: .red
-            )
+            Text("Hard-Set Statistics")
+                .font(.custom("Arial", size: 30.0))
+                .bold()
+                .position(
+                    x: width/2,
+                    y: height/30
+                )
+                .monospaced()
             
             /*TheButton(
                 x: (width/3.0) - 25.0,
@@ -74,5 +46,5 @@ struct GameView: View {
 }
 
 #Preview {
-    StatisticsView()
+    GameView()
 }
