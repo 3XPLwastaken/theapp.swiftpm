@@ -12,8 +12,11 @@ class Data : ObservableObject {
     @Published var gamesList : [
         String
     ] = [
-        "Idk;GamesPlayed;MoneyChange",
-        "Idk;GamesPlayed;MoneyChange",
-        "Idk;GamesPlayed;MoneyChange",
+        "Idk;GamesPlayed;0",
+        "Idk;GamesPlayed;0",
+        "Idk;GamesPlayed;0",
     ]
+    
+    @Published var moneyUp = 0
+    @Published var moneyText = "+ $0"
 }
