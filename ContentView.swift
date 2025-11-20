@@ -36,7 +36,7 @@ struct ContentView: View {
                     fontSize: 45.0,
                     rotatingEnabled: false,
                 ) {
-                    showingStatistics = true
+                   //showingStatistics = true
                 }
                 
                 TheButton(
@@ -46,7 +46,9 @@ struct ContentView: View {
                     height: height/17,
                     text: "Statistics",
                     rotatingEnabled: false,
-                )
+                ) {
+                    showingStatistics = true
+                }
             }
         }
         // todo: change this system

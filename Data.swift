@@ -12,9 +12,9 @@ class Data : ObservableObject {
     @Published var gamesList : [
         String
     ] = [
+        /*"Idk;GamesPlayed;0",
         "Idk;GamesPlayed;0",
-        "Idk;GamesPlayed;0",
-        "Idk;GamesPlayed;0",
+        "Idk;GamesPlayed;0",*/
     ]
     
     @Published var moneyUp = 0
