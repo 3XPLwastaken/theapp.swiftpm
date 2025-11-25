@@ -17,6 +17,7 @@ let package = Package(
             name: "theapp",
             targets: ["AppModule"],
             bundleIdentifier: "clc.expl.theapp",
+            teamIdentifier: "LKW7UKGZ29",
             displayVersion: "1.0",
             bundleVersion: "1",
             appIcon: .placeholder(icon: .cloud),

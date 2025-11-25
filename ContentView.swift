@@ -55,5 +55,10 @@ struct ContentView: View {
         .sheet(isPresented: $showingStatistics) {
             StatisticsView(data: DATA)
         }
+        
+        .frame(
+            width: .infinity,
+            height: .infinity
+        )
     }
 }
