@@ -5,6 +5,7 @@ struct ContentView: View {
     let height = UIScreen.main.bounds.height
     
     @State var showingStatistics : Bool = false
+    @State var showBlackJack : Bool = false
     @ObservedObject var DATA = Data();
     
     var body: some View {
@@ -36,7 +37,7 @@ struct ContentView: View {
                     fontSize: 45.0,
                     rotatingEnabled: false,
                 ) {
-                   //showingStatistics = true
+                    showBlackJack = true
                 }
                 
                 TheButton(
@@ -54,6 +55,9 @@ struct ContentView: View {
         // todo: change this system
         .sheet(isPresented: $showingStatistics) {
             StatisticsView(data: DATA)
+        }
+        .sheet(isPresented: $showBlackJack) {
+            BlackjackView(data: DATA)
         }
         
         .frame(
