@@ -1,6 +1,6 @@
 import SwiftUI
 
-// MARK: - Deck + Game Phase + Result
+// struct for a collection of cards
 
 struct Deck {
     var cards : [Card] = {
@@ -33,6 +33,8 @@ struct Deck {
     }
 }
 
+// yuck
+
 enum GamePhase {
     case playerTurn
     case dealerTurn
@@ -50,7 +52,7 @@ enum RoundOutcome {
     case dealerBust
 }
 
-// MARK: - Blackjack View
+// the game view
 
 struct BlackjackView : View {
     
@@ -441,6 +443,7 @@ struct BlackjackView : View {
             betMultiplier: betMultiplier
         )
     }
+    
     
     func finishRound(outcome : RoundOutcome, betMultiplier : Double) {
         let bet = baseBet * betMultiplier

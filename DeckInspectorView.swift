@@ -10,7 +10,6 @@ import SwiftUI
 struct DeckInspectorView : View {
     
     let remainingCards : [Card]
-    
     let ranksInOrder : [Rank] = Rank.allCases
     
     @Environment(\.dismiss) var dismiss
@@ -84,7 +83,6 @@ struct DeckInspectorView : View {
                 .font(.headline)
                 .padding(.bottom, 8.0)
             
-            // 4 rows, 1 per suit
             ForEach(Suit.allCases, id: \.self) { suit in
                 HStack(spacing: 4.0) {
                     ForEach(ranksInOrder, id: \.self) { rank in

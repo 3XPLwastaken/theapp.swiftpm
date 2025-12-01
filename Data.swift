@@ -8,7 +8,8 @@
 import SwiftUI
 import SwiftData
 
-// MARK: - SwiftData model that actually lives on disk
+// i had this code corrected by chatgpt and it changed how literally everything worked
+// but its whatever i mean i wrote the original and that worked so
 
 @Model
 final class SavedStatistics {
@@ -27,7 +28,6 @@ final class SavedStatistics {
     }
 }
 
-// MARK: - your Data class, now backed by SwiftData
 
 @MainActor
 class Data : ObservableObject {
@@ -59,6 +59,7 @@ class Data : ObservableObject {
     private var saved   : SavedStatistics
     private var isLoading = true
     
+    // loads all the data out of our context as soon as this class is initialized.
     init() {
         context = Data.modelContainer.mainContext
         
@@ -77,7 +78,7 @@ class Data : ObservableObject {
             }
         }
         
-        // pull values from SwiftData into your @Published vars
+        // load the values
         gamesList = saved.gamesList
         moneyUp   = saved.moneyUp
         moneyText = saved.moneyText
@@ -85,7 +86,7 @@ class Data : ObservableObject {
         isLoading = false
     }
     
-    // MARK: - persistence
+    // saves if needed
     
     private func persistIfNeeded() {
         if isLoading {

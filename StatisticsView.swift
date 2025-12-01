@@ -133,7 +133,7 @@ struct StatisticsView: View {
             }
             Button("Cancel", role: .cancel) { }
         } message: {
-            Text("Use a negative sign for losses (e.g., -10)")
+            Text("Use a negative sign for losses)")
         }
         .alert("Enter the amount of games you played", isPresented: $showGamesPlayed) {
             TextField("Your game count:", text: $gamesInput)
@@ -164,6 +164,7 @@ struct StatisticsView: View {
         .onAppear {
             calculateWinnings()
         }
+        // i love deprecated functions
         .onChange(of: data.gamesList) { _ in
             // auto-update when blackjack adds new rows
             calculateWinnings()

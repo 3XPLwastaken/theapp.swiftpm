@@ -1,5 +1,7 @@
 import SwiftUI
 
+// this beautiful graph was written by CCP certified chinese ai
+
 struct GraphView: View {
     @Binding var data: [Double]
     
